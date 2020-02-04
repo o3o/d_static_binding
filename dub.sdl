@@ -1,0 +1,14 @@
+name "staticbind"
+description "Stating binding example"
+authors "Orfeo Da Vià"
+targetType "executable"
+
+configuration "mode1" {
+  targetName "mode1"
+  sourceFiles "c/libclib.a"
+}
+
+configuration "mode2" {
+   targetName "mode2"
+   lflags "-L./c" "-lclib"
+}
