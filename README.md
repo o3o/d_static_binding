@@ -16,18 +16,25 @@ For more information see:
 
 
 ## Build clib
-The file must be compiled into object file for linking with the D programs.
+The file must be compiled into object file for linking with the D programs:
 
 ```
 $ cd ./c
 $ make
+$ ls -1
+clib.c
+clib.o
+libclib.a
+makefile
 ```
 
-## Build d example
+## Build D example
 
 We have two ways:
 1. include clib into exacutable
 1. pass the necessary information to the linker
+
+these two ways are defined in dub as configuration `mode1` and mode2:
 
 ```
 name "staticbind"
@@ -47,6 +54,7 @@ configuration "mode2" {
 ```
 
 ## Mode 1
+In order to build
 ```
 dub build -c=mode1
 ```
@@ -55,12 +63,13 @@ dub build -c=mode1
 ```
 dub build -c=mode2
 ```
+
 Linker flags:
 ```
    lflags "-L./c" "-lclib"
 ```
 means:
 
-- `-L`/path/to/libraries`: he linker searches a standard list of directories for the library. The directories searched include several standard system directories plus any that you specify with `-L``.
+- `-L/path/to/libraries`: the linker searches a standard list of directories for the library. The directories searched include several standard system directories plus any that you specify with `-L``.
 - `-lfoo` Search the library named `foo` (or libfoo.a) when linking.
 
